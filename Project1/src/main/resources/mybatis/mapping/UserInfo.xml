@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="cn.gyyx.testproject.yufei.dao.IUserInfo">
+  
+  <!-- UserInfo的查询 -->
+  <sql id="allUserInfo"> user_id,user_sex,user_phone,user_state </sql>
+  <!-- 通过id查找用户信息 -->
+<select id="getUserInfoByUserId"  parameterType="String" resultType="UserInfo">
+select
+<include refid="allUserInfo"/>
+ from user_info
+  <where>
+  user_id=#{userId}
+  </where>
+</select> 
+<insert id="insertInfo">
+insert into user_info
+values
+(#{userid},#{usersex},#{userphone},#{userstate})
+
+
+</insert>
+ 
+  
+  <resultMap type="UserInfo" id="userResultMap">
+  <result property="userId" column="user_id"/>
+  <result property="userSex" column="user_sex"/>
+  <result property="userPhone" column="user_phone"/>
+    <result property="userState" column="user_state"/>
+  </resultMap>
+  </mapper>

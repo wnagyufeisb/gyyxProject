@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="cn.gyyx.testproject.yufei.dao.IUserKey">
+  
+  <!-- UserKey的查询 -->
+  <sql id="selectuserByUserName"> user_id,user_name,password,pstring</sql>
+  <!-- 通过账户查找用户信息 -->
+<select id="selectUserByUserName"   resultMap="userResultMap">
+select
+<include refid="selectuserByUserName"/>
+ from user_key
+  <where>
+  user_name=#{username}
+  </where>
+</select> 
+ 
+  <insert id="insertUserKey">
+  insert into user_key 
+  values
+  (#{userName},#{password},#{pString})  
+  
+  </insert>
+  <resultMap type="UserKey" id="userResultMap">
+  <result property="password" column="password"/>
+  <result property="userName" column="user_name"/>
+  <result property="userId" column="user_id"/>
+    <result property="pString" column="pstring"/>
+  </resultMap>
+  </mapper>

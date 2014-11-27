@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration >  
+
+<typeAliases >
+<typeAlias alias="UserKey" type="cn.gyyx.testproject.yufei.bean.UserKey"/>
+<typeAlias alias="UserInfo" type="cn.gyyx.testproject.yufei.bean.UserInfo"/>
+<typeAlias alias="UserLog" type="cn.gyyx.testproject.yufei.bean.UserLog"/>
+</typeAliases>
+
+<environments default="yufei1_db">
+  <environment id="yufei1_db">
+    <transactionManager type="JDBC">
+    </transactionManager>
+    <dataSource type="POOLED">
+      <property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=yufei1_db"/>
+      <property name="username" value="sa"/>
+      <property name="password" value="sqlsever"/>
+    </dataSource>
+  </environment>
+</environments>
+<mappers>
+
+<mapper resource="mybatis/mapping/UserKey.xml"/>
+<mapper resource="mybatis/mapping/UserInfo.xml"/>
+<mapper resource="mybatis/mapping/user_log.xml"/>
+</mappers>
+</configuration>

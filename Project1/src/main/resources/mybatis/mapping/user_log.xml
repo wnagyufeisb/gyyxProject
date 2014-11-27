@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="cn.gyyx.testproject.yufei.dao.IUserLog">
+  
+  <!-- UserLog的查询 -->
+  <sql id="allUserLog"> code,user_name,user_load_datetime,user_ip </sql>
+  <!-- 通过用户姓名查找用户日志信息 -->
+<select id="getLogByUserName"   resultMap="userResultMap">
+select
+<include refid="allUserLog"/>
+ from user_log
+  <where>
+  user_name=#{userName}
+  </where>
+</select> 
+ 
+  
+  <resultMap type="UserLog" id="userResultMap">
+  <result property="code" column="code"/>
+  <result property="userName" column="user_name"/>
+  <result property="userLoadTime" column="user_load_time"/>
+    <result property="userIP" column="user_ip"/>
+  </resultMap>
+  </mapper>
