@@ -8,6 +8,7 @@
 <typeAlias alias="UserKey" type="cn.gyyx.testproject.yufei.bean.UserKey"/>
 <typeAlias alias="UserInfo" type="cn.gyyx.testproject.yufei.bean.UserInfo"/>
 <typeAlias alias="UserLog" type="cn.gyyx.testproject.yufei.bean.UserLog"/>
+<typeAlias alias="ListTemp" type="cn.gyyx.testproject.yufei.bean.ListTemp"/>
 </typeAliases>
 
 <environments default="yufei1_db">
@@ -26,6 +27,7 @@
 
 <mapper resource="mybatis/mapping/UserKey.xml"/>
 <mapper resource="mybatis/mapping/UserInfo.xml"/>
-<mapper resource="mybatis/mapping/user_log.xml"/>
+<mapper resource="mybatis/mapping/UserLog.xml"/>
+<mapper resource="mybatis/mapping/UserList.xml"/>
 </mappers>
 </configuration>

@@ -14,7 +14,20 @@ select
   </where>
 </select> 
  
-  <insert id="insertUserKey">
+ <select id="selectNumberUser" resultType="int">
+ 
+ select user_id from user_key
+ 
+ </select>
+ 
+ <select id=" selectTemp" resultMap="listResultMap">
+ select top #{size} user_key.user_id,user_name,user_sex,user_phone  from user_key,user_info where user_key.user_id not in (select top #{n1} user_key. user_id from user_key)
+ AND user_info.user_id not in (select top #{n1} user_info.user_id from user_info) AND user_key.user_id=user_info.userid
+ 
+ 
+ 
+ </select>
+  <insert id="insertUserKey" >
   insert into user_key 
   values
   (#{userName},#{password},#{pString})  
@@ -25,5 +38,11 @@ select
   <result property="userName" column="user_name"/>
   <result property="userId" column="user_id"/>
     <result property="pString" column="pstring"/>
+  </resultMap>
+   <resultMap type="ListTemp" id="listResultMap">
+  <result property="userName" column="user_name"/>
+  <result property="userId" column="user_id"/>
+    <result property="userSex" column="user_sex"/>
+    <result property="userPhone" column="user_phone"/>
   </resultMap>
   </mapper>

@@ -1,12 +1,58 @@
-<html>
+<html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>用户登录</title>
+<title>用户列表</title>
 </head>
+
+
 <body>
-sdsd
-
-</form>
-
+<table width="655" height="258" border="0">
+  <tr>
+    <td width="125" height="27"><div align="center">欢迎</div></td>
+    <td width="106"><div align="center">用户</div></td>
+    <td width="72"><div align="center"></div></td>
+    <td width="100"><div align="center"></div></td>
+    <td width="62"><div align="center"></div></td>
+    <td width="67"><div align="center"></div></td>
+    <td width="53"><div align="center"></div></td>
+    <td width="18"><div align="center"></div></td>
+  </tr>
+  <tr>
+    <td height="45" colspan="8"><div align="center">以下是获奖名单</div>      <div align="center"></div>      <div align="center"></div>      <div align="center"></div>      <div align="center"></div>      <div align="center"></div>      <div align="center"></div>      <div align="center"></div></td>
+  </tr>
+  <tr>
+    <td height="36"><div align="center">用户id</div></td>
+    <td><div align="center">用户姓名</div></td>
+    <td><div align="center">性别</div></td>
+    <td><div align="center">电话</div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+  </tr>
+  #foreach($item in $listTemp)
+  <tr>
+    <td height="46"><div align="center">$item.userId</div></td>
+    <td><div align="center"></div>$item.userName</td>
+    <td><div align="center"></div>$item.userSex</td>
+    <td><div align="center"></div>$item.userPhone</td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+	
+  </tr>
+  #end
+  <tr>
+    <td><div align="center"><input type="button" value="首页" onclick="window.location.href='/testproject1/Page?method=0&pageNo=1'"/></div></td>
+    <td><div align="center"><a href="/testproject1/Page?method=1&pageNo=${pageNo}">上一页</a></div></td>
+    <td><div align="center"> 当前页：$pageNo</div></td>
+    <td><div align="center"><a href="/testproject1/Page?method=2&pageNo=${pageNo}">下一页</a> </div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+    <td><div align="center"></div></td>
+  </tr>
+</table>
 </body>
 </html>

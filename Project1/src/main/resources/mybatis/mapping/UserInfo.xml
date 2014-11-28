@@ -5,7 +5,7 @@
   <!-- UserInfo的查询 -->
   <sql id="allUserInfo"> user_id,user_sex,user_phone,user_state </sql>
   <!-- 通过id查找用户信息 -->
-<select id="getUserInfoByUserId"  parameterType="String" resultType="UserInfo">
+<select id="getUserInfoByUserId"  parameterType="String" resultType="UserInfo" resultMap="userResultMap">
 select
 <include refid="allUserInfo"/>
  from user_info

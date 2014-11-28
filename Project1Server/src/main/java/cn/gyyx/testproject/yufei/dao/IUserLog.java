@@ -12,6 +12,19 @@
 
 package cn.gyyx.testproject.yufei.dao;
 
+import org.apache.ibatis.annotations.Param;
+
+import cn.gyyx.testproject.yufei.bean.UserLog;
+
+
+
+
 public interface IUserLog {
+	/**
+	 * 插入登陆日志
+	 * @param log
+	 */
+	public void insertLog(@Param("UserName")String userName,@Param("UserIP")String userIP);
+	
 
 }

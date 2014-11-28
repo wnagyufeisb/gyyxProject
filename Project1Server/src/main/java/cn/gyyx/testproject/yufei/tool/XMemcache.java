@@ -54,12 +54,12 @@ public class XMemcache  {
 	  * @param id
 	  * @throws IOException
 	  */
-	 public void getXMemcache(String id) throws IOException{
+	 public String getXMemcache(String id) throws IOException{
 		 MemcachedClientBuilder builder = new XMemcachedClientBuilder( AddrUtil.getAddresses("localhost:11211"));
 			MemcachedClient memcachedClient = builder.build();
-			
+			String hehe = "";
 			try {
-				memcachedClient.get(id);
+				 hehe=memcachedClient.get(id);
 			} catch (TimeoutException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,8 +70,10 @@ public class XMemcache  {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}  
+			return hehe;
 		 
 	 }
+	 
 	 
 	 
 	 

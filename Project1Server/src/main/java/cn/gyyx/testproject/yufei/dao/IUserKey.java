@@ -14,8 +14,11 @@ package cn.gyyx.testproject.yufei.dao;
 
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import cn.gyyx.testproject.yufei.bean.ListTemp;
 import cn.gyyx.testproject.yufei.bean.UserKey;
 
 public interface IUserKey {
@@ -40,6 +43,12 @@ public interface IUserKey {
 	 * @param pstring
 	 */
  public void insertUserKey(@Param("userName")String username,@Param("password")String password,@Param("pString")String pstring);
+ /**
+  * 查询记录的数量
+  * @return int 
+  */
+ public int selectNumberUser();
+
 
 }
 

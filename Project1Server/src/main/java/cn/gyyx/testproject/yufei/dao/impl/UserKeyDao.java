@@ -12,9 +12,12 @@
 
 package cn.gyyx.testproject.yufei.dao.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import cn.gyyx.testproject.yufei.bean.ListTemp;
 import cn.gyyx.testproject.yufei.bean.UserKey;
 import cn.gyyx.testproject.yufei.dao.IUserKey;
 import cn.gyyx.testproject.yufei.dao.MyBatiysConnectionFactory;
@@ -50,7 +53,9 @@ public class UserKeyDao implements IUserKey {
 			sqlSession.close();
 		}
 	}
-
+/**
+ * 判断是否存在该用户
+ */
 	public boolean IsUser(String username) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -68,7 +73,9 @@ public class UserKeyDao implements IUserKey {
 		}
 
 	}
-
+/**
+ * 插入用户userKey记录
+ */
 	public void insertUserKey(String username,String password,String pstring) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -82,6 +89,15 @@ public class UserKeyDao implements IUserKey {
 			sqlSession.close();
 		}
 		
+	}
+/**
+ * 查找用户记录的数量 
+ */
+	public int selectNumberUser() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		IUserKey userdao = sqlSession.getMapper(IUserKey.class);
+		int number=userdao.selectNumberUser();
+		return number;
 	}
 
 }

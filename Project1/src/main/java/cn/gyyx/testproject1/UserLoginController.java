@@ -10,7 +10,11 @@
 
 package cn.gyyx.testproject1;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+
+import net.rubyeye.xmemcached.XMemcachedClientBuilder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +25,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cn.gyyx.testproject.yufei.bean.UserKey;
 import cn.gyyx.testproject.yufei.service.IUserLogin;
+import cn.gyyx.testproject.yufei.service.IUserLogs;
 import cn.gyyx.testproject.yufei.service.impl.UserLogin;
+import cn.gyyx.testproject.yufei.service.impl.UserLogs;
 import cn.gyyx.testproject.yufei.tool.MD5Password;
+import cn.gyyx.testproject.yufei.tool.XMemcache;
+import cn.gyyx.testproject.yufei.tool.getUUID;
 
 /**
  * Handles requests for the application home page.
@@ -46,7 +54,7 @@ public class UserLoginController {
 			MD5Password md5Password = new MD5Password();
 			IUserLogin iuserlogin = new UserLogin();
 			UserKey userKey = iuserlogin.getUserKeyByUserName(username);
-			if (userKey != null) {	
+			if (userKey != null) {
 				System.out.println(password);
 				password = md5Password.MD5(password).toString().trim();// 密码转换
 				password = password + userKey.getpString();
@@ -58,9 +66,29 @@ public class UserLoginController {
 				}
 
 			}
+
 			if (isLogin == true) {
-				System.out.println(userKey.getUserName());
-				return "UserList";
+
+				// 開始加入日誌
+				IUserLogs logs = new UserLogs();
+				// 獲取ip
+				String userIP = logs.getIP(request);
+				logs.setUserLog(username, userIP);
+
+				// uuid
+				getUUID u = new getUUID();
+				String uuid = u.getUUID();
+				// 存入cache
+				XMemcache memcache = new XMemcache();
+				try {
+					memcache.setXMemcache(uuid, username);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				model.addAttribute("uuid", uuid);
+				return "redirect:/UserLoginSuccessController";
+
 			} else {
 				return "UserLogin";
 			}
